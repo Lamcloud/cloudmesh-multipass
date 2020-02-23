@@ -47,6 +47,7 @@ class MultipassCommand(PluginCommand):
                 multipass set key=VALUE [--dryrun]
                 multipass get [key] [--dryrun]
                 multipass deploy [--dryrun]
+                multipass version [--dryrun]
 
           Interface to multipass
 
@@ -284,7 +285,15 @@ class MultipassCommand(PluginCommand):
                     result = provider.info(name)
                     VERBOSE(result)
 
-            return result
+        elif arguments.version:
+
+            if arguments.dryrun:
+                banner("dryrun version")
+            else:
+                provider = Provider()
+                provider.version()
+
+            return ""
 
         elif arguments.suspend:
 
