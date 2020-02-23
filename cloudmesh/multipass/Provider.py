@@ -379,6 +379,11 @@ class Provider(ComputeNodeABC):
 
         return dict_result
 
+    def version(self):
+        banner("version")
+        result = os.system("multipass version")
+        return result
+
     # IMPLEMENT
     def delete(self, name="cloudmesh", purge=False):
         """
